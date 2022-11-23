@@ -18,7 +18,13 @@ public class VFX : PoolableMono
     public override void Reset()
     {
         vfx = GetComponentInChildren<VisualEffect>();
-        vfx.Play();
-        StartCoroutine(Effect());
+        if(time != 0){
+            StartCoroutine(Effect());
+        }else{
+            vfx.Play();
+        }
+    }
+    public void StopVFX(){
+        PoolManager.Instance.Push(this);
     }
 }

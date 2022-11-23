@@ -65,6 +65,11 @@ public class TestSkill_3 : PassiveSkill
                     currentCount++;
                     UseSkill(closeObj.gameObject);
                 }
+                else{
+                    afterPos.Clear();
+                    isActive = false;
+                    return;
+                }
             }
         }
         else {
