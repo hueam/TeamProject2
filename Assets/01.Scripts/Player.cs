@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public LineRenderer lineR;
     public Weapon _weapon;
     public Ability _ability;
+    private Animator _anim;
 
     [SerializeField]
     Transform target;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
         _rigid = GetComponent<Rigidbody>();
         _weapon = GetComponentInChildren<Weapon>();
         _ability = GetComponentInChildren<Ability>();
+        _anim = GetComponent<Animator>();
         foreach(Skill skill in _ability.skills)
         {
             if(skill is PassiveSkill){
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
     {
         Vector3 input = (Input.GetAxis("Horizontal") * transform.right
             + Input.GetAxis("Vertical") * transform.forward);
+        _anim.SetBool("IsMove",input.sqrMagnitude > 0);
         input.y = _rigid.velocity.y;
         MoveCam();
         if(Input.GetKeyDown(KeyCode.Q)){
@@ -68,6 +71,7 @@ public class Player : MonoBehaviour
         _camValueY += Input.GetAxis("Mouse Y");
         Mathf.Clamp(_camValueY,-100,90);
         transform.rotation = Quaternion.Euler(0,_camValueX,0);
-        target.rotation = Quaternion.Euler(-_camValueY,0,0);
+        target.position = transform.position;
+        target.rotation = Quaternion.Euler(-_camValueY,_camValueX,0);
     }        
 }
