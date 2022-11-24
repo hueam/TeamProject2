@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SaveObject : MonoBehaviour, IDamageable
 {
-    [SerializeField]float MaxHP;
+    [SerializeField]int MaxHP;
     float currentHP;
     private void Start() {
         currentHP = MaxHP;
@@ -13,6 +13,7 @@ public class SaveObject : MonoBehaviour, IDamageable
     public void Hit(float Damage)
     {
         currentHP -= Damage;
+        Debug.Log(currentHP);
         if(currentHP <= 0){
             Debug.Log("님 망함 ㅋㅋ");
         }

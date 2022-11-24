@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public Transform _firePos;
     Rigidbody _rigid;
-    Camera _mainCam;
+    public Camera _mainCam;
     float _camValueX;
     float _camValueY;
     [Range(0f,30f)]
@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
     public LineRenderer lineR;
     public Weapon _weapon;
     public Ability _ability;
+    private Animator _anim;
+
+    [SerializeField]
+    Transform target;
 
     Action<GameObject> passiveAction;
     List<ActiveSkill> activeAction = new List<ActiveSkill>();
@@ -26,6 +30,7 @@ public class Player : MonoBehaviour
         _rigid = GetComponent<Rigidbody>();
         _weapon = GetComponentInChildren<Weapon>();
         _ability = GetComponentInChildren<Ability>();
+        _anim = GetComponent<Animator>();
         foreach(Skill skill in _ability.skills)
         {
             if(skill is PassiveSkill){
@@ -41,10 +46,13 @@ public class Player : MonoBehaviour
     {
         Vector3 input = (Input.GetAxis("Horizontal") * transform.right
             + Input.GetAxis("Vertical") * transform.forward);
+        _anim.SetBool("IsMove",input.sqrMagnitude > 0);
         input.y = _rigid.velocity.y;
         MoveCam();
         if(Input.GetKeyDown(KeyCode.Q)){
-            activeAction[0].UseSkill(_mainCam.transform);
+            activeAction[0].UseSkill(_mainCam.transform,this,passiveAction);
+        }if(Input.GetKeyDown(KeyCode.E)){
+            activeAction[1].UseSkill(_mainCam.transform,this,passiveAction);
         }
         transform.position += input*Time.deltaTime*5;
         if(Input.GetKey(KeyCode.Mouse0)) {
@@ -62,6 +70,8 @@ public class Player : MonoBehaviour
         _camValueX += Input.GetAxis("Mouse X");
         _camValueY += Input.GetAxis("Mouse Y");
         Mathf.Clamp(_camValueY,-100,90);
-        transform.rotation = Quaternion.Euler(-_camValueY,_camValueX,0);
-    }
+        transform.rotation = Quaternion.Euler(0,_camValueX,0);
+        target.position = transform.position;
+        target.rotation = Quaternion.Euler(-_camValueY,_camValueX,0);
+    }        
 }

@@ -5,15 +5,25 @@ using UnityEngine.AI;
 
 public class NormalZombie : EnemyBass
 {
+    bool isAttack;
     private void Start()
     {
-        _navMesh = GetComponent<NavMeshAgent>();
         _anim = GetComponent<Animator>();
         _navMesh.speed = _enemyData.speed;
     }
     private void Update()
     {
-        _navMesh.SetDestination(_target.position);
-        
+        if(Vector3.Distance(transform.position,_target.position)<3f&&isAttack){
+            _target.GetComponent<IDamageable>().Hit(_enemyData.atk);
+            _anim.SetTrigger("Attack");
+            isAttack = false;
+        }
+        if(!isAttack){
+            _timer += Time.deltaTime;
+            if(_timer > 3.5f){
+                isAttack = true;
+                _timer =0;
+            }
+        }
     }
 }

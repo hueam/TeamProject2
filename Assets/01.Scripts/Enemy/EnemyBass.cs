@@ -13,9 +13,12 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
     public Material _mat;
     public Transform _target;
 
+    protected float _timer;
     float _currentHP;
 
-
+    private void Awake() {
+        _target = GameManager.Instance.playerStruct;
+    }
     public void Boom(float value,float explosionDis,float Damage)
     {
         VFX vfx = PoolManager.Instance.Pop("ElectricBoom") as VFX;
@@ -51,7 +54,9 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
     public override void Reset() {
         _currentHP =_enemyData.maxHP;
         _mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+        _navMesh = GetComponent<NavMeshAgent>();
         _mat.SetFloat("_FresnelPower",100f);
+        _navMesh.destination = _target.position;
     }
 
 }

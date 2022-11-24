@@ -6,8 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     List<PoolableMono> pools = new List<PoolableMono>();
-    [SerializeField]
-    Transform playerStruct; 
+    public Transform playerStruct; 
     [SerializeField]
     float enemySpawnRange;
     EnemySpawner spawner;
