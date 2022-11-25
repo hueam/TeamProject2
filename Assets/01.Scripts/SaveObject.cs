@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SaveObject : MonoBehaviour, IDamageable
 {
-    [SerializeField]int MaxHP;
-    float currentHP;
+    public float MaxHP;
+    public float currentHP;
     private void Start() {
         currentHP = MaxHP;
     }
