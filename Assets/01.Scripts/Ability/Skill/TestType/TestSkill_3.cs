@@ -8,11 +8,7 @@ public class TestSkill_3 : PassiveSkill
 
     [SerializeField]
     int maxCount;
-    [SerializeField]
-    float coolTime;
-    float timer;
     int currentCount;
-    bool isActive;
     VFX vfx;
     List<Transform> bezierPos = new List<Transform>();
     List<Transform> afterPos = new List<Transform>();
@@ -79,15 +75,5 @@ public class TestSkill_3 : PassiveSkill
             return;
         }
     }
-    private void Update() {
-        if(!isActive){
-            timer += Time.deltaTime;
-        }
-        if(timer >= coolTime)
-        {
-            isActive = true;
-            timer = 0;
-        }
-
-    }
+    
 }
