@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,6 @@ public class MouseController : MonoBehaviour
     [SerializeField] private Slider mouseSlider = null;
 
     private void Update() {
-        //마우스 회전 스피드 = mouseSlider.value;
+        //player 스크립트에 * mouseSlider.value 하면 댐 ㅎㅎ
     }
 }
