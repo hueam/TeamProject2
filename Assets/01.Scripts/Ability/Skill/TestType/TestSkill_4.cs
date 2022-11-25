@@ -10,10 +10,11 @@ public class TestSkill_4 : ActiveSkill
     VisualEffect visualEffect;
     ElectricOrb orb;
     bool isAtiving;
-    float timer;
     float chargingValue;
+    float chargingTime;
     public override void UseSkill(Transform maincam,Player player,Action<GameObject> callback) 
     {
+        if(isActive){
         if(isAtiving){
             orb.SetAction(callback);
             orb.ReleaseOrb((int)(chargingValue)*5);
@@ -22,25 +23,35 @@ public class TestSkill_4 : ActiveSkill
             visualEffect.SetFloat("Size",0.1f);
             visualEffect.SetFloat("trailsSpawnRate",0.001f);
             isAtiving = false;
-        }else{
+            isActive = false;
+        }else {
             vfx = PoolManager.Instance.Pop("ActiveElectric_2") as VFX;
             orb = vfx.GetComponent<ElectricOrb>();
             orb.SetTarget(player.transform);
             visualEffect = vfx.GetComponent<VisualEffect>();
             isAtiving = true;
+            }
         }
     }
     private void Update() {
         if(isAtiving)
         {
-            timer += Time.deltaTime;
+            chargingTime += Time.deltaTime;
             chargingValue += Time.deltaTime;
-            if(timer >= 7f){
+            if(chargingTime >= 5f){
                 if(visualEffect.GetFloat("OutSphereSize")<0.9f){
                     visualEffect.SetFloat("OutSphereSize",visualEffect.GetFloat("OutSphereSize")+0.3f);
-                    timer = 0;
+                    chargingTime = 0;
                 }
             }
+        }
+        if(!isActive){
+            timer += Time.deltaTime;
+        }
+        if(timer >= coolTime)
+        {
+            isActive = true;
+            timer = 0;
         }
     }
 }

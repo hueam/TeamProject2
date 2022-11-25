@@ -45,7 +45,6 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
     public void Hit(float Damage)
     {
         _currentHP -= Damage;
-        Debug.Log(_currentHP);
         if (_currentHP <= 0)
         {
             PoolManager.Instance.Push(this);

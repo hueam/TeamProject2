@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     float enemySpawnRange;
     EnemySpawner spawner;
+    Player player;
     public static GameManager Instance;
     private void Awake() {
         if(GameManager.Instance == null){
@@ -20,13 +21,14 @@ public class GameManager : MonoBehaviour
             PoolManager.Instance.CreatePool(p);
         }
         spawner = new EnemySpawner(playerStruct,enemySpawnRange);
+        StartCoroutine(spawner.spawnDelay());
+        player=GameObject.Find("Player").GetComponent<Player>();
     }
     private void Start() {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Space))
-            spawner.Spwan();
-    }
+    // public void NextStage(IEnumerator coru){
+    //     StartCoroutine(coru);
+    // }
 }
