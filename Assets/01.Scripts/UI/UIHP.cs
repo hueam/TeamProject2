@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class UIHP : MonoBehaviour
 {
     SaveObject saveObj = new SaveObject();
-    [SerializeField] private Image hpSlider = null;
+    [SerializeField] private Image hpBar = null;
 
     private void Awake() {
-        hpSlider.fillAmount = saveObj.MaxHP;
+        hpBar.fillAmount = saveObj.MaxHP;
     }
 
     private void Update() {
-        hpSlider.fillAmount = saveObj.currentHP;
+        hpBar.fillAmount = saveObj.currentHP;
     }
 }
