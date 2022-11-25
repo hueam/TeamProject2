@@ -13,9 +13,11 @@ public class NormalZombie : EnemyBass
     }
     private void Update()
     {
-        if(Vector3.Distance(transform.position,_target.position)<3f&&isAttack){
+        if (Vector3.Distance(transform.position, _target.position) < 5f && isAttack)
+        {
             _target.GetComponent<IDamageable>().Hit(_enemyData.atk);
             _anim.SetTrigger("Attack");
+            _navMesh.isStopped = true;
             isAttack = false;
         }
         if(!isAttack){

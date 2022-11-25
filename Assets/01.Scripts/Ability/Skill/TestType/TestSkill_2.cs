@@ -8,6 +8,7 @@ public class TestSkill_2 : ActiveSkill
     VFX vfx;
     public override void UseSkill(Transform maincam,Player player, Action<GameObject> callback= null)
     {
+        if(isActive){
         vfx = PoolManager.Instance.Pop("ActiveElectric") as VFX;
         vfx.transform.position = player._firePos.position;
         vfx.transform.LookAt(maincam.forward * player._dis * 3);
@@ -19,8 +20,8 @@ public class TestSkill_2 : ActiveSkill
                 callback?.Invoke(col.gameObject);
                 EnemyBass enemyBass = col.GetComponent<EnemyBass>();
                 enemyBass.Hit(2f);
-                // Material mat = col.GetComponentInChildren<SkinnedMeshRenderer>().material;
-                // mat.SetFloat("_FresnelPower", Mathf.Lerp(mat.GetFloat("_FresnelPower"), 0, 0.5f));
+                Material mat = col.GetComponentInChildren<SkinnedMeshRenderer>().material;
+                mat.SetFloat("_FresnelPower", Mathf.Lerp(100, 0, 0.8f));
                 // if (mat.GetFloat("_FresnelPower") <= 0.5f)
                 // {
                 //     if (enemyBass is IExplosionable)
@@ -32,6 +33,8 @@ public class TestSkill_2 : ActiveSkill
                 //     }
                 // }
             }
+        }
+        isActive = false;
         }
     }
 }

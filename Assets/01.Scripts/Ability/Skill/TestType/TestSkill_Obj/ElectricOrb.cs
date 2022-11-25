@@ -67,9 +67,26 @@ public class ElectricOrb : MonoBehaviour
                         }
                         visual.StopVFX();
                     }
-                }
+                } 
+                // if (col.gameObject.CompareTag("Player")){
+                //     VFX vfx = PoolManager.Instance.Pop("ElectricBoom") as VFX;
+                //         vfx.transform.position = transform.position;
+                //         Collider[] colliders = Physics.OverlapSphere(transform.transform.position,effect.GetFloat("OutSphereSize"), 1 << 7);
+                //         foreach (Collider collider in colliders){
+                //             if (col.gameObject.CompareTag("Enemy"))
+                //             {
+                //                 EnemyBass damageable = col.GetComponent<EnemyBass>();
+                //                 float dis = Vector3.Distance(transform.position, collider.transform.position);
+                //                 damageable.Hit(Mathf.Clamp(5 - dis, 0.1f, 5f));
+                //             }
+                //         }
+                //         visual.StopVFX();
+                // }
             }
         }
+    }
+    public void Disappear(){
+
     }
     public void SetAction(Action<GameObject> _callback){
         callback = _callback;
