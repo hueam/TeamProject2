@@ -17,7 +17,7 @@ public class NormalZombie : EnemyBass
         {
             _target.GetComponent<IDamageable>().Hit(_enemyData.atk);
             _anim.SetTrigger("Attack");
-            _navMesh.isStopped = true;
+            audioSource.Play();
             isAttack = false;
         }
         if(!isAttack){

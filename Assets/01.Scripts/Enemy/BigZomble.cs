@@ -18,6 +18,7 @@ public class BigZomble : EnemyBass
         {
             _target.GetComponent<IDamageable>().Hit(_enemyData.atk);
             _anim.SetTrigger("Attack");
+            audioSource.Play();
             StartCoroutine(Jump());
             _navMesh.isStopped = true;
             isAttack = false;
