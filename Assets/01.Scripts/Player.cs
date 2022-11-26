@@ -57,9 +57,11 @@ public class Player : MonoBehaviour
         transform.position += input*Time.deltaTime*5;
         if(Input.GetKey(KeyCode.Mouse0)) {
             _weapon.Attack(lineR, _firePos, _mainCam.transform, _dis, _objLayer, passiveAction);
+            lineR.gameObject.SetActive(true);
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
+            lineR.gameObject.SetActive(false);
             attacking = false;
         }
         if(!attacking){
