@@ -7,7 +7,7 @@ public abstract class Skill :MonoBehaviour
     public bool isActive;
     public float timer;
     public float coolTime;
-    private void Update() {
+    private void FixedUpdate() {
         if(!isActive){
             timer += Time.deltaTime;
         }

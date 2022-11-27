@@ -47,6 +47,7 @@ public class TestSkill_4 : ActiveSkill
         }
         if(!isActive){
             timer += Time.deltaTime;
+            UIManager.Instance.SetESkillCoolTime(timer <= 0 ? 0 : (coolTime - timer) / coolTime);
         }
         if(timer >= coolTime)
         {
