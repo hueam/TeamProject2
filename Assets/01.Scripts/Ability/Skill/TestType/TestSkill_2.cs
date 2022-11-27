@@ -37,4 +37,7 @@ public class TestSkill_2 : ActiveSkill
         isActive = false;
         }
     }
+    private void Update() {
+        UIManager.Instance.SetQSkillCoolTime(timer <= 0 ? 0 : (coolTime - timer) / coolTime);
+    }
 }
