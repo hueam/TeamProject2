@@ -20,6 +20,7 @@ public class BigZomble : EnemyBass
             _anim.SetTrigger("Attack");
             audioSource.Play();
             StartCoroutine(Jump());
+            impulseSource.GenerateImpulse();
             _navMesh.isStopped = true;
             isAttack = false;
         }

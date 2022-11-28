@@ -27,7 +27,6 @@ public class TestSkill_3 : PassiveSkill
                     {
                         if (closeObj == null) closeObj = col.transform;
                         else if (Vector3.Distance(obj.transform.position, col.transform.position) < Vector3.Distance(obj.transform.position, closeObj.transform.position)) closeObj = col.transform;
-
                     }
                 }
 
@@ -49,6 +48,7 @@ public class TestSkill_3 : PassiveSkill
                     mat.SetFloat("_FresnelPower", Mathf.Lerp(mat.GetFloat("_FresnelPower"), 0, 0.5f));
                     if (mat.GetFloat("_FresnelPower") <= 0.5f)
                     {
+                        enemyBass.Hit(2f);
                         if (enemyBass is IExplosionable)
                         {
                             if (mat.GetFloat("_FresnelPower") <= 0.5f)
