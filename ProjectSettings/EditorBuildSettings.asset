@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/mainGame.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/00.Scenes/tjfdk/IntroScene.unity
+    guid: d856440bd3b8566439aedee38c3e55c7
+  - enabled: 1
+    path: Assets/00.Scenes/tjfdk/UIScene.unity
+    guid: 0b1a2ca3e194fc3459ed185a6ef9b2ef
   m_configObjects: {}
