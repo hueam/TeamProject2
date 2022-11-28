@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b5a8620f1582b479e9e2f47dc44821, type: 3}
   m_Name: LaserSO
   m_EditorClassIdentifier: 
-  Atk: 0.02
+  Atk: 0.05
   delay: 0.01

@@ -12,12 +12,14 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
     protected Animator _anim;
     public Material _mat;
     public Transform _target;
+    protected AudioSource audioSource;
 
     protected float _timer;
     float _currentHP;
 
     private void Awake() {
         _target = GameManager.Instance.playerStruct;
+        audioSource = GetComponent<AudioSource>();
     }
     public void Boom(float value,float explosionDis,float Damage)
     {
@@ -47,10 +49,13 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
         _currentHP -= Damage;
         if (_currentHP <= 0)
         {
+            
             PoolManager.Instance.Push(this);
         }
     }
     public override void Reset() {
+    }
+    public void Init(){
         _currentHP =_enemyData.maxHP;
         _mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
         _navMesh = GetComponent<NavMeshAgent>();

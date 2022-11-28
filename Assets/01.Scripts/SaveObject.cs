@@ -13,8 +13,9 @@ public class SaveObject : MonoBehaviour, IDamageable
     public void Hit(float Damage)
     {
         currentHP -= Damage;
+        UIManager.Instance.SetHPBar(currentHP/MaxHP);
         if(currentHP <= 0){
-            Debug.Log("님 망함 ㅋㅋ");
+            UIManager.Instance.GameOver();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     float enemySpawnRange;
     EnemySpawner spawner;
     Player player;
+    int stage;
     public static GameManager Instance;
     private void Awake() {
         if(GameManager.Instance == null){
@@ -21,14 +23,15 @@ public class GameManager : MonoBehaviour
             PoolManager.Instance.CreatePool(p);
         }
         spawner = new EnemySpawner(playerStruct,enemySpawnRange);
-        StartCoroutine(spawner.spawnDelay());
         player=GameObject.Find("Player").GetComponent<Player>();
+        NextStage();
     }
     private void Start() {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    // public void NextStage(IEnumerator coru){
-    //     StartCoroutine(coru);
-    // }
+    public void NextStage(){
+        stage++;
+        StartCoroutine(spawner.spawnDelay(stage));
+    }
 }

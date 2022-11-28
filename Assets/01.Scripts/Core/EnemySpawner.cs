@@ -17,22 +17,27 @@ public class EnemySpawner
     public EnemySpawner(Transform target, float range){
         _target = target;
         _spawnRange = range;
+        spawnValue = 10;
+
     }
-    public void Spwan(){
+    public void Spwan(int num){
         float ranAngle = Random.Range(0,360);
         Vector3 spawnPos = _target.position + new Vector3(Mathf.Cos(ranAngle)*_spawnRange,10,Mathf.Sin(ranAngle)*_spawnRange);
-        EnemyBass eneny = Random.Range(1f, 11f) < 0.5f ? PoolManager.Instance.Pop("BigZombie") as EnemyBass : PoolManager.Instance.Pop("Zombie") as EnemyBass;
-        eneny.transform.position = spawnPos;
+        EnemyBass enemy = null;
+        enemy = num%5 == 0?PoolManager.Instance.Pop("BigZombie") as EnemyBass : PoolManager.Instance.Pop("Zombie") as EnemyBass;
+        enemy.Init();
+        enemy.transform.position = spawnPos;
     }
-    public IEnumerator spawnDelay(){
+    public IEnumerator spawnDelay(int stage){
         while(true){
-        // for (int i = 0; i < spawnValue; i++)
-        // {
-            yield return new WaitForSeconds(0.5f);
-            Spwan();
+            for (int i = 0; i < spawnValue+stage; i++)
+            {
+                yield return new WaitForSeconds(Random.Range(0.5f,2f));
+                Spwan(i);
+            }
+            yield return new WaitForSeconds(10f);
+            GameManager.Instance.NextStage();
         }
-        // }
-        // GameManager.Instance.NextStage(NextStage());
     }
     // IEnumerator NextStage(){
     //     yield return new WaitForSeconds(10f);

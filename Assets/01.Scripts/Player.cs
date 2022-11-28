@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public LineRenderer lineR;
     public Weapon _weapon;
     public Ability _ability;
+    public float dpi;
     private Animator _anim;
 
     [SerializeField]
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
 
     Action<GameObject> passiveAction;
     List<ActiveSkill> activeAction = new List<ActiveSkill>();
+    public bool isSetting;
 
     bool attacking;
     void Start() {
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        if(isSetting)
+            return;
         Vector3 input = (Input.GetAxis("Horizontal") * transform.right
             + Input.GetAxis("Vertical") * transform.forward);
         _anim.SetBool("IsMove",input.sqrMagnitude > 0);
@@ -57,9 +61,11 @@ public class Player : MonoBehaviour
         transform.position += input*Time.deltaTime*5;
         if(Input.GetKey(KeyCode.Mouse0)) {
             _weapon.Attack(lineR, _firePos, _mainCam.transform, _dis, _objLayer, passiveAction);
+            lineR.gameObject.SetActive(true);
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
+            lineR.gameObject.SetActive(false);
             attacking = false;
         }
         if(!attacking){
@@ -67,11 +73,14 @@ public class Player : MonoBehaviour
         }
     }
     void MoveCam(){
-        _camValueX += Input.GetAxis("Mouse X");
-        _camValueY += Input.GetAxis("Mouse Y");
+        _camValueX += Input.GetAxis("Mouse X")*dpi;
+        _camValueY += Input.GetAxis("Mouse Y")*dpi;
         Mathf.Clamp(_camValueY,-100,90);
         transform.rotation = Quaternion.Euler(0,_camValueX,0);
         target.position = transform.position;
         target.rotation = Quaternion.Euler(-_camValueY,_camValueX,0);
     }        
+}
+public class playerData{
+    
 }
