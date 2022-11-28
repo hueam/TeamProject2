@@ -514,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a2de0a442bc534eb2f97916247ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hel: 15
   _enemyData: {fileID: 11400000, guid: 7dd0391668293754c825451eebee0a2b, type: 2}
   _mat: {fileID: 0}
   _target: {fileID: 0}
