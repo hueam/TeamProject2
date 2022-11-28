@@ -59,8 +59,11 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
             PoolManager.Instance.Push(this);
             if (gameObject.name == "BigZombie") {
                 SaveObject saveObject = _target.GetComponent<SaveObject>();
-                if (saveObject.currentHP < saveObject.MaxHP) saveObject.currentHP += hel;
-                if (saveObject.currentHP >= saveObject.MaxHP) saveObject.currentHP = saveObject.MaxHP;
+                if (saveObject.currentHP < saveObject.MaxHP) {
+                    saveObject.currentHP += hel;
+                    Mathf.Clamp(saveObject.currentHP,0,100);
+                    UIManager.Instance.SetHPBar(Mathf.InverseLerp(0,saveObject.MaxHP,saveObject.currentHP));
+                }
             }
         }
     }

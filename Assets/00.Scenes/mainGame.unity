@@ -3444,7 +3444,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0029170d14ce6c04c9f45c22cdae5559, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0205dac6452ad0948a127ce83dbeaf3d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8380,7 +8380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: affeade9874cf2347abb155e8d0db4d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f99131075c098f447811747ae33e127d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23572,14 +23572,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: affeade9874cf2347abb155e8d0db4d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5048c204ee8605c46920ac591af3c87b, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24487,6 +24487,7 @@ GameObject:
   - component: {fileID: 1993470417}
   - component: {fileID: 1993470416}
   - component: {fileID: 1993470418}
+  - component: {fileID: 1993470419}
   m_Layer: 0
   m_Name: playerCM
   m_TagString: Untagged
@@ -24571,6 +24572,36 @@ MonoBehaviour:
     m_FrequencyGain: 1
     m_Duration: 1
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &1993470419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993470415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 128
+  m_IgnoreTag: Enemy
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 1
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!4 &1994448059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4281780448642680, guid: 0f9577b4dda6cc546abea4737be5a392,
@@ -25573,14 +25604,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0029170d14ce6c04c9f45c22cdae5559, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5048c204ee8605c46920ac591af3c87b, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
