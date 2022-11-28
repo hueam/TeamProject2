@@ -12,7 +12,7 @@ public class TestSkill_2 : ActiveSkill
         vfx = PoolManager.Instance.Pop("ActiveElectric") as VFX;
         vfx.transform.position = player._firePos.position;
         vfx.transform.LookAt(maincam.forward * player._dis * 3);
-        Collider[] cols = Physics.OverlapBox(vfx.transform.position + player.transform.forward * 4, new Vector3(1, 1, 4), vfx.transform.rotation, LayerMask.GetMask("Any"));
+        Collider[] cols = Physics.OverlapBox(vfx.transform.position + player.transform.forward * 6, new Vector3(1, 1, 6), vfx.transform.rotation, LayerMask.GetMask("Any"));
         foreach (Collider col in cols)
         {
             if (col.gameObject.CompareTag("Enemy"))

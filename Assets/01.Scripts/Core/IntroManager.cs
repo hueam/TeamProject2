@@ -10,6 +10,10 @@ public class IntroManager : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public Slider[] sliders;
+    private void Awake() {
+        Cursor.visible = true;
+        Cursor.lockState =CursorLockMode.None;
+    }
     void Start()
     {
         float value;

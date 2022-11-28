@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager :MonoBehaviour
 {   
@@ -20,10 +22,12 @@ public class UIManager :MonoBehaviour
     RectTransform settingPanel;
     [SerializeField]
     RectTransform closeImage;
+    [SerializeField]
+    TextMeshProUGUI stageTxt;
 
     public static UIManager Instance;
+    
     private void Start(){
-        Instance = this;
         _player = GameObject.Find("Player").GetComponent<Player>();
         mixer = audioMixer;
         canvas = GameObject.Find("Canvas").transform;
@@ -63,6 +67,15 @@ public class UIManager :MonoBehaviour
             
         }    
     }
+    public void AppearStageTxt(int stage){
+        stageTxt.text = $"{stage} Stage";
+        Vector3 defaultPos = stageTxt.transform.position;
+        Sequence seq = DOTween.Sequence();
+        seq.Append(stageTxt.transform.DOMove(defaultPos + Vector3.down*100,1f));
+        seq.Join(stageTxt.transform.DOScale(Vector3.one* 2,1f));
+        seq.Append(stageTxt.transform.DOMove(defaultPos,1f));
+        seq.Join(stageTxt.transform.DOScale(Vector3.one,1f));
+    }
     public void SetHPBar(float value){
         _hpBar.value = value;
         Sequence sequence = DOTween.Sequence();
@@ -86,11 +99,15 @@ public class UIManager :MonoBehaviour
         audioMixer.SetFloat("SFX",Mathf.Lerp(-80,20,slider.value));
     }
     public void SetMouseDPI(Slider slider){
-        _player.dpi = Mathf.Lerp(0.1f,50,slider.value);
+        _player.dpi = Mathf.Lerp(0.1f,10,slider.value);
     }
     public void GameOver(){
+        StartCoroutine(GameOverCor());
+    }
+    IEnumerator GameOverCor(){
         closeImage.DOMove(new Vector2(closeImage.position.x,0),0.5f);
-
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("Intro");
     }
     
 }

@@ -17,6 +17,7 @@ public class NormalZombie : EnemyBass
         {
             _target.GetComponent<IDamageable>().Hit(_enemyData.atk);
             _anim.SetTrigger("Attack");
+            impulseSource.GenerateImpulse();
             audioSource.Play();
             isAttack = false;
         }
