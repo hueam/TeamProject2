@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         if(GameManager.Instance == null){
             GameManager.Instance = this;
         }
+        UIManager.Instance = GetComponent<UIManager>();
         PoolManager.Instance = new PoolManager(transform);
         foreach(PoolableMono p in pools){
             PoolManager.Instance.CreatePool(p);
@@ -33,5 +34,6 @@ public class GameManager : MonoBehaviour
     public void NextStage(){
         stage++;
         StartCoroutine(spawner.spawnDelay(stage));
+        UIManager.Instance.AppearStageTxt(stage);
     }
 }

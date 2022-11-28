@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,7 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
     public Material _mat;
     public Transform _target;
     protected AudioSource audioSource;
+    protected CinemachineImpulseSource impulseSource;
 
     protected float _timer;
     float _currentHP;
@@ -20,6 +22,7 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
     private void Awake() {
         _target = GameManager.Instance.playerStruct;
         audioSource = GetComponent<AudioSource>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
     public void Boom(float value,float explosionDis,float Damage)
     {
@@ -55,8 +58,8 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
     }
     public override void Reset() {
     }
-    public void Init(){
-        _currentHP =_enemyData.maxHP;
+    public void Init(int stage){
+        _currentHP =_enemyData.maxHP+stage;
         _mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
         _navMesh = GetComponent<NavMeshAgent>();
         _mat.SetFloat("_FresnelPower",100f);
