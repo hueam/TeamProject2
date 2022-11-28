@@ -12,8 +12,12 @@ public class Setting : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            isSetting = !isSetting;
-            settingPanel.gameObject.SetActive(isSetting);
+            OpenSetting();
         }
+    }
+
+    public void OpenSetting() {
+        isSetting = !isSetting;
+        settingPanel.gameObject.SetActive(isSetting);
     }
 }
