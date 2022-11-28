@@ -8,6 +8,9 @@ using UnityEngine.AI;
 public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
 {
     [SerializeField]
+    public int hel;
+
+    [SerializeField]
     protected EnemySO _enemyData;
     protected NavMeshAgent _navMesh;
     protected Animator _anim;
@@ -15,6 +18,7 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
     public Transform _target;
     protected AudioSource audioSource;
     protected CinemachineImpulseSource impulseSource;
+
 
     protected float _timer;
     float _currentHP;
@@ -52,8 +56,15 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
         _currentHP -= Damage;
         if (_currentHP <= 0)
         {
-            
             PoolManager.Instance.Push(this);
+            if (gameObject.name == "BigZombie") {
+                SaveObject saveObject = _target.GetComponent<SaveObject>();
+                if (saveObject.currentHP < saveObject.MaxHP) {
+                    saveObject.currentHP += hel;
+                    Mathf.Clamp(saveObject.currentHP,0,100);
+                    UIManager.Instance.SetHPBar(Mathf.InverseLerp(0,saveObject.MaxHP,saveObject.currentHP));
+                }
+            }
         }
     }
     public override void Reset() {

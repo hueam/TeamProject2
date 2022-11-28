@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b552f0c44ec9b41a003ec07fe22f27, type: 3}
   m_Name: NormalEnemy SO
   m_EditorClassIdentifier: 
-  speed: 10
-  atk: 2
-  maxHP: 5
+  speed: 7
+  atk: 1
+  maxHP: 3
