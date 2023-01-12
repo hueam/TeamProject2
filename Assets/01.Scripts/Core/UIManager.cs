@@ -102,12 +102,12 @@ public class UIManager :MonoBehaviour
         _player.dpi = Mathf.Lerp(0.1f,10,slider.value);
     }
     public void GameOver(){
-        StartCoroutine(GameOverCor());
-    }
-    IEnumerator GameOverCor(){
-        closeImage.DOMove(new Vector2(closeImage.position.x,0),0.5f);
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("Intro");
+        Sequence seq = DOTween.Sequence();
+        seq.Append(closeImage.DOMove(new Vector2(closeImage.position.x,0),0.5f));
+        seq.Append(closeImage.DOMove(new Vector2(closeImage.position.x,10),0.2f));
+        seq.Append(closeImage.DOMove(new Vector2(closeImage.position.x,0),0.1f));
+        seq.OnComplete(()=>SceneManager.LoadScene("Intro"));
+        
     }
     
 }
