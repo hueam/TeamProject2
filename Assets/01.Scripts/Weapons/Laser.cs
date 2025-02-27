@@ -15,7 +15,7 @@ public class Laser : Weapon
         if(Physics.Raycast(_mainCam.transform.position, _mainCam.transform.forward, out RaycastHit raycastHit, _dis*3, _objLayer)){
             if(raycastHit.transform.gameObject.CompareTag("Enemy")&&attackable){
                 GameObject hitObj = raycastHit.transform.gameObject;
-                EnemyBass damageable = hitObj.GetComponent<EnemyBass>();
+                EnemyBase damageable = hitObj.GetComponent<EnemyBase>();
                 damageable.Hit(weaponData.Atk);
                 callback?.Invoke(hitObj);
                 attackable = false;

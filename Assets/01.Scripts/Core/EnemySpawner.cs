@@ -17,8 +17,8 @@ public class EnemySpawner
     public void Spwan(int num){
         float ranAngle = Random.Range(0,360);
         Vector3 spawnPos = _target.position + new Vector3(Mathf.Cos(ranAngle)*_spawnRange,10,Mathf.Sin(ranAngle)*_spawnRange);
-        EnemyBass enemy = null;
-        enemy = num%5 == 0?PoolManager.Instance.Pop("BigZombie") as EnemyBass : PoolManager.Instance.Pop("Zombie") as EnemyBass;
+        EnemyBase enemy = null;
+        enemy = num%5 == 0?PoolManager.Instance.Pop("BigZombie") as EnemyBase : PoolManager.Instance.Pop("Zombie") as EnemyBase;
         enemy.Init(stage);
         enemy.transform.position = spawnPos;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NormalZombie : EnemyBass
+public class NormalZombie : EnemyBase
 {
     bool isAttack;
     private void Start()

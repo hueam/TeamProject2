@@ -5,7 +5,7 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
+public abstract class EnemyBase : PoolableMono,IExplosionable,IDamageable
 {
     [SerializeField]
     public int hel;
@@ -38,7 +38,7 @@ public abstract class EnemyBass : PoolableMono,IExplosionable,IDamageable
         {
             if (col.gameObject.CompareTag("Enemy"))
             {
-                EnemyBass damageable = col.GetComponent<EnemyBass>();
+                EnemyBase damageable = col.GetComponent<EnemyBase>();
                 float dis = Vector3.Distance(transform.position, col.transform.position);
                 damageable.Hit(Mathf.Clamp(5 - dis, 0.1f, 5f));
                 if (damageable is IExplosionable && col.gameObject != gameObject)

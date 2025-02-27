@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigZomble : EnemyBass
+public class BigZomble : EnemyBase
 {
     bool isAttack;
     Rigidbody rigid;

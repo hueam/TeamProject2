@@ -8,7 +8,7 @@ public class TestSkill_1 : PassiveSkill
     public override void UseSkill(GameObject hitObj = null)
     {
         Transform hitTrm = hitObj.transform;
-        EnemyBass damageableObj = hitObj.GetComponent<EnemyBass>();
+        EnemyBase damageableObj = hitObj.GetComponent<EnemyBase>();
         mat = hitObj.GetComponentInChildren<SkinnedMeshRenderer>().material;
         mat.SetFloat("_FresnelPower", Mathf.Lerp(mat.GetFloat("_FresnelPower"), 0, 0.03f));
         if (mat.GetFloat("_FresnelPower") <= 0.5f)

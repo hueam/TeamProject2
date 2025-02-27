@@ -43,17 +43,17 @@ public class TestSkill_3 : PassiveSkill
                     bezierPos[2].position = Vector3.Lerp(obj.transform.position,closeObj.transform.position,0.6f)+Vector3.up;
                     bezierPos[3].position = closeObj.position+Vector3.up;
 
-                    EnemyBass enemyBass = closeObj.GetComponent<EnemyBass>();
+                    EnemyBase enemyBase = closeObj.GetComponent<EnemyBase>();
                     Material mat = closeObj.GetComponentInChildren<SkinnedMeshRenderer>().material;
                     mat.SetFloat("_FresnelPower", Mathf.Lerp(mat.GetFloat("_FresnelPower"), 0, 0.5f));
                     if (mat.GetFloat("_FresnelPower") <= 0.5f)
                     {
-                        enemyBass.Hit(2f);
-                        if (enemyBass is IExplosionable)
+                        enemyBase.Hit(2f);
+                        if (enemyBase is IExplosionable)
                         {
                             if (mat.GetFloat("_FresnelPower") <= 0.5f)
                             {
-                                IExplosionable explosionable = (IExplosionable)enemyBass;
+                                IExplosionable explosionable = (IExplosionable)enemyBase;
                                 explosionable.Boom(0.03f, 5f, 0.1f);
                             }
                         }

@@ -47,8 +47,8 @@ public class ElectricOrb : MonoBehaviour
                         bezierPos[2].position = Vector3.Lerp(transform.position, col.transform.position, 0.6f);
                         bezierPos[3].position = col.transform.position;
 
-                        EnemyBass enemyBass = col.GetComponent<EnemyBass>();
-                        enemyBass.Hit(2f);
+                        EnemyBase enemyBase = col.GetComponent<EnemyBase>();
+                        enemyBase.Hit(2f);
                         callback?.Invoke(col.gameObject);
                         value--;
                     }
@@ -60,7 +60,7 @@ public class ElectricOrb : MonoBehaviour
                         foreach (Collider collider in colliders){
                             if (col.gameObject.CompareTag("Enemy"))
                             {
-                                EnemyBass damageable = col.GetComponent<EnemyBass>();
+                                EnemyBase damageable = col.GetComponent<EnemyBase>();
                                 float dis = Vector3.Distance(transform.position, collider.transform.position);
                                 damageable.Hit(Mathf.Clamp(5 - dis, 0.1f, 5f));
                             }

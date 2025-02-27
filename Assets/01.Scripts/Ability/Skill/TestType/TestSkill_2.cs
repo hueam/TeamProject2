@@ -18,8 +18,8 @@ public class TestSkill_2 : ActiveSkill
             if (col.gameObject.CompareTag("Enemy"))
             {
                 callback?.Invoke(col.gameObject);
-                EnemyBass enemyBass = col.GetComponent<EnemyBass>();
-                enemyBass.Hit(2f);
+                EnemyBase enemyBase = col.GetComponent<EnemyBase>();
+                enemyBase.Hit(2f);
                 Material mat = col.GetComponentInChildren<SkinnedMeshRenderer>().material;
                 mat.SetFloat("_FresnelPower", Mathf.Lerp(100, 0, 0.8f));
                 // if (mat.GetFloat("_FresnelPower") <= 0.5f)
